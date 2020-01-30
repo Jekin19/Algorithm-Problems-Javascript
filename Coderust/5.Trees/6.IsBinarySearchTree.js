@@ -12,7 +12,7 @@ let is_bst = function(root) {
       stack.push(currentElement.left);
       currentElement.left = null;
     } else {
-      if (currentElement.value < previousElement) {
+      if (currentElement.value <= previousElement) {
         return false;
       }
       previousElement = currentElement.value;

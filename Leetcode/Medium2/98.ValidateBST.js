@@ -22,7 +22,7 @@ var isValidBST = function(root) {
       stack.push(currentElement.left);
       currentElement.left = null;
     } else {
-      if (currentElement.val < previousElement) {
+      if (currentElement.val <= previousElement) {
         return false;
       }
       previousElement = currentElement.val;
