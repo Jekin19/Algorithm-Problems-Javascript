@@ -29,7 +29,7 @@ function getPalindromCount(s, leftIndex, rightIndex) {
 console.log("");
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");
-console.log("Generate Parenthesis");
+console.log("Palindrom Stings");
 console.log("---------------------------------------");
 
 const input = "aabbaa";
