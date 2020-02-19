@@ -1,27 +1,46 @@
+// let delete_node = function(head, key) {
+//   if (!head) {
+//     return head;
+//   }
+//   let current = head;
+//   let previous = null;
+//   while (current) {
+//     if (current.data === key) {
+//       // if key is the 1st node in linked list
+//       if (previous === null) {
+//         head = head.next;
+//         current = head;
+//       } else {
+//         // skip the node, make current = next node and point previous to new current.
+//         current = current.next;
+//         previous.next = current;
+//       }
+//     } else {
+//       // continue to next node, current becomes next, previous becomes current.
+//       previous = current;
+//       current = current.next;
+//     }
+//   }
+
+//   return head;
+// };
+
 let delete_node = function(head, key) {
   if (!head) {
     return head;
   }
-  let current = head;
-  let previous = null;
-  while (current) {
-    if (current.data === key) {
-      // if key is the 1st node in linked list
-      if (previous === null) {
-        head = head.next;
-        current = head;
-      } else {
-        // skip the node, make current = next node and point previous to new current.
-        current = current.next;
-        previous.next = current;
-      }
-    } else {
-      // continue to next node, current becomes next, previous becomes current.
-      previous = current;
-      current = current.next;
-    }
+
+  while (head && head.data === key) {
+    head = head.next;
   }
 
+  let current = head;
+  while (current && current.next) {
+    if (current.next.data === key) {
+      current.next = current.next.next;
+    }
+    current = current.next;
+  }
   return head;
 };
 
