@@ -12,7 +12,7 @@ let find_kth_permutation = function(v = [], k) {
   }
 
   let result = "";
-  for (let i = 0; i < v.length; i++) {
+  while (v.length > 0) {
     let factorialCombinations = factorial(v.length - 1);
     let selectedValue = Math.floor((k - 1) / factorialCombinations);
     result = result + v[selectedValue];

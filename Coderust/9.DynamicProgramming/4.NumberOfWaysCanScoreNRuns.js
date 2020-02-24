@@ -20,9 +20,7 @@ let scoring_options = function(n) {
       let tempResult = 0;
       // if current score - score option = 0, then result is 1 else the value saved in result for that score index. i.e.
       // if i = 3, j=1 then scoringOption is 2, so diff is 1. hence value will be result[1].
-      if (diff === 0) {
-        tempResult = 1;
-      } else if (diff > 0) {
+      if (diff >= 0) {
         tempResult = result[diff];
       }
       // add result for current scoring option to already calc options for that score (i)

@@ -26,5 +26,28 @@ let permute_string = function(input = "") {
   return result;
 };
 
-let input = "abcd";
-console.log(permute_string(input));
+let permute_string_recursive = function(input = "") {
+  let output = [];
+  if (!input) {
+    return output;
+  }
+  permute_string_rec(input, [], output);
+  return output;
+};
+
+let permute_string_rec = function(input = "", result, output) {
+  if (input.length === 0) {
+    output.push(result);
+    return;
+  }
+
+  for (let i = 0; i < input.length; i++) {
+    const newResult = result + input[i];
+    const newInput = input.slice(0, i) + input.slice(i + 1, input.length);
+    permute_string_rec(newInput, newResult, output);
+  }
+};
+
+let input = "abc";
+console.log(JSON.stringify(permute_string(input)));
+console.log(JSON.stringify(permute_string_recursive(input)));

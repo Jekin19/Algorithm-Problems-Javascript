@@ -2,9 +2,7 @@ let integer_divide = function(dividend, divisor) {
   if (!dividend || !divisor) {
     return -1;
   }
-  if (dividend === 1) {
-    return divisor;
-  }
+
   if (divisor === 1) {
     return dividend;
   }
@@ -19,12 +17,12 @@ let integer_divide = function(dividend, divisor) {
 
   let temp = divisor;
   let quotient = 1;
-  while (temp * 2 < dividend) {
-    temp = temp * 2;
-    quotient = quotient * 2;
+  while (temp + temp < dividend) {
+    temp = temp + temp;
+    quotient = quotient + quotient;
   }
 
-  if (temp * 2 > dividend) {
+  if (temp + temp > dividend) {
     quotient += integer_divide(Math.floor(dividend - temp), divisor);
   }
   return quotient;
