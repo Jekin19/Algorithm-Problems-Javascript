@@ -19,6 +19,18 @@ var climbStairs = function(n) {
   return memo[n];
 };
 
+var climbStairs2 = function(n) {
+  let previous = 1;
+  let current = 1;
+  while (n >= 2) {
+    let temp = previous;
+    previous = current;
+    current = temp + current;
+    n--;
+  }
+  return current;
+};
+
 console.log("");
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");

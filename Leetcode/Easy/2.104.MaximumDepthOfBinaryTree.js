@@ -11,6 +11,31 @@
  * @param {TreeNode} root
  * @return {number}
  */
+// var maxDepth = function(root) {
+//   let count = 0;
+//   if (!root) {
+//     return count;
+//   }
+
+//   let stack = [root];
+//   while (stack.length > 0) {
+//     let stack2 = stack;
+//     stack = [];
+//     count++;
+//     while (stack2.length > 0) {
+//       const current = stack2.pop();
+//       if (current.left) {
+//         stack.push(current.left);
+//       }
+
+//       if (current.right) {
+//         stack.push(current.right);
+//       }
+//     }
+//   }
+//   return count;
+// };
+
 var maxDepth = function(root) {
   let count = 0;
   if (!root) {
@@ -18,18 +43,22 @@ var maxDepth = function(root) {
   }
 
   let stack = [root];
+  stack.push(null);
   while (stack.length > 0) {
-    let stack2 = stack;
-    stack = [];
-    count++;
-    while (stack2.length > 0) {
-      const current = stack2.pop();
-      if (current.left) {
-        stack.push(current.left);
-      }
+    const current = stack.shift();
+    if (current.left) {
+      stack.push(current.left);
+    }
 
-      if (current.right) {
-        stack.push(current.right);
+    if (current.right) {
+      stack.push(current.right);
+    }
+
+    if (stack[0] === null) {
+      stack.shift();
+      count++;
+      if (stack.length > 0) {
+        stack.push(null);
       }
     }
   }
