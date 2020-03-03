@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/counting-bits/
+// https://www.programcreek.com/2015/03/leetcode-counting-bits-java/
 
 /**
  * @param {number} num
@@ -8,6 +9,27 @@ var countBits = function(num) {
   let result = [];
   for (let i = 0; i <= num; i++) {
     result.push(countOfOneBit(i));
+  }
+  return result;
+};
+
+/**
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits2 = function(num) {
+  const result = [0];
+  let incrementor = 1;
+  let pow = 1;
+  for (let i = 1; i <= num; i++) {
+    if (i === pow) {
+      result.push(1);
+      pow = pow << 1;
+      incrementor = 1;
+    } else {
+      result.push(result[incrementor] + 1);
+      incrementor++;
+    }
   }
   return result;
 };
@@ -36,4 +58,5 @@ console.log("---------------------------------------");
 const input = 5;
 console.log("input: " + input);
 console.log(countBits(input));
+console.log(countBits2(input));
 console.log("---------------------------------------");
