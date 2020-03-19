@@ -55,7 +55,7 @@ console.log("+++++++++++++++++++++++++++++++++++++++");
 console.log("Counting bits");
 console.log("---------------------------------------");
 
-const input = 5;
+const input = 10;
 console.log("input: " + input);
 console.log(countBits(input));
 console.log(countBits2(input));

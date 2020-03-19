@@ -34,13 +34,39 @@ var productExceptSelf = function(nums) {
 
   return result;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelfWithoutDivision = function(nums) {
+  let result = [];
+  if (!nums || nums.length === 0) {
+    return result;
+  }
+
+  result.push(1);
+  // populate left array
+  for (let i = 0; i < nums.length - 1; i++) {
+    result.push(result[i] * nums[i]);
+  }
+
+  let r = 1;
+  for (let i = result.length - 1; i >= 0; i--) {
+    result[i] = r * result[i];
+    r *= nums[i];
+  }
+  return result;
+};
+
 console.log("");
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");
 console.log("Product of Array Except Self");
 console.log("---------------------------------------");
-const input = [1, 2, 3, 4];
+const input = [4, 5, 1, 8, 2];
 console.log("input: " + input);
 
 console.log(productExceptSelf(input));
+console.log(productExceptSelfWithoutDivision(input));
 console.log("---------------------------------------");
