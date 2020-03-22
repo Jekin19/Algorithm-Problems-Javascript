@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/unique-binary-search-trees/
-
 // https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/CountNumberOfTreesInBST.java
+//https://www.youtube.com/watch?v=YDf982Lb84o
 
 /**
  * @param {number} n
@@ -29,7 +29,7 @@ console.log("+++++++++++++++++++++++++++++++++++++++");
 console.log("Unique BST");
 console.log("---------------------------------------");
 
-const input = 2;
+const input = 4;
 console.log("input: " + input);
 console.log(numTrees(input));
 console.log("---------------------------------------");

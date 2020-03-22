@@ -7,15 +7,15 @@
 var findUnsortedSubarray = function(nums) {
   let min = Number.MAX_SAFE_INTEGER,
     max = Number.MIN_SAFE_INTEGER;
-  let flag = false;
   for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < nums[i - 1]) flag = true;
-    if (flag) min = Math.min(min, nums[i]);
+    if (nums[i] < nums[i - 1]) {
+      min = Math.min(min, nums[i]);
+    }
   }
-  flag = false;
   for (let i = nums.length - 2; i >= 0; i--) {
-    if (nums[i] > nums[i + 1]) flag = true;
-    if (flag) max = Math.max(max, nums[i]);
+    if (nums[i] > nums[i + 1]) {
+      max = Math.max(max, nums[i]);
+    }
   }
   let l, r;
   for (l = 0; l < nums.length; l++) {

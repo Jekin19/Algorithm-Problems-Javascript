@@ -28,7 +28,7 @@ console.log("+++++++++++++++++++++++++++++++++++++++");
 console.log("Find duplicate num");
 console.log("---------------------------------------");
 
-const input = [9, 4, 9, 5, 7, 2, 8, 9, 3, 9];
+const input = [1, 3, 4, 2, 2];
 console.log("input: " + input);
 console.log(JSON.stringify(findDuplicate(input)));
 console.log("---------------------------------------");

@@ -11,32 +11,32 @@
  * @param {TreeNode} root
  * @return {number}
  */
-// var maxDepth = function(root) {
-//   let count = 0;
-//   if (!root) {
-//     return count;
-//   }
+var maxDepthWith2Stacks = function(root) {
+  let count = 0;
+  if (!root) {
+    return count;
+  }
 
-//   let stack = [root];
-//   while (stack.length > 0) {
-//     let stack2 = stack;
-//     stack = [];
-//     count++;
-//     while (stack2.length > 0) {
-//       const current = stack2.pop();
-//       if (current.left) {
-//         stack.push(current.left);
-//       }
+  let stack = [root];
+  while (stack.length > 0) {
+    let stack2 = stack;
+    stack = [];
+    count++;
+    while (stack2.length > 0) {
+      const current = stack2.pop();
+      if (current.left) {
+        stack.push(current.left);
+      }
 
-//       if (current.right) {
-//         stack.push(current.right);
-//       }
-//     }
-//   }
-//   return count;
-// };
+      if (current.right) {
+        stack.push(current.right);
+      }
+    }
+  }
+  return count;
+};
 
-var maxDepth = function(root) {
+var maxDepthWithNullBreaker = function(root) {
   let count = 0;
   if (!root) {
     return count;
@@ -65,6 +65,37 @@ var maxDepth = function(root) {
   return count;
 };
 
+var maxDepth = function(root) {
+  let count = 0;
+  if (!root) {
+    return count;
+  }
+
+  let stack = [root];
+  while (stack.length > 0) {
+    count++;
+    const stackLength = stack.length;
+    for (let i = 0; i < stackLength; i++) {
+      const current = stack.shift();
+      if (current.left) {
+        stack.push(current.left);
+      }
+      if (current.right) {
+        stack.push(current.right);
+      }
+    }
+  }
+  return count;
+};
+
+var maxDepth_rec = function(root) {
+  if (!root) {
+    return 0;
+  }
+
+  return Math.max(maxDepth_rec(root.left), maxDepth_rec(root.right)) + 1;
+};
+
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");
 console.log("Max depth of Binary Trees");
@@ -76,3 +107,5 @@ let root = {
 };
 
 console.log(maxDepth(root));
+console.log(maxDepthWithNullBreaker(root));
+console.log(maxDepth_rec(root));
