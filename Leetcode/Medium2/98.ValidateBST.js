@@ -11,7 +11,7 @@
  */
 var isValidBST = function(root) {
   if (!root) {
-    return false;
+    return true;
   }
 
   let stack = [root];

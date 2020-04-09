@@ -22,6 +22,17 @@ var findDuplicate = function(nums) {
   return ptr1;
 };
 
+var findDuplicate2 = function(nums) {
+  for (let num of nums) {
+    let index = Math.abs(num) - 1;
+    if (nums[index] > 0) {
+      nums[index] = -nums[index];
+    } else {
+      return num;
+    }
+  }
+};
+
 console.log("");
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");
@@ -31,4 +42,5 @@ console.log("---------------------------------------");
 const input = [1, 3, 4, 2, 2];
 console.log("input: " + input);
 console.log(JSON.stringify(findDuplicate(input)));
+console.log(JSON.stringify(findDuplicate2(input)));
 console.log("---------------------------------------");

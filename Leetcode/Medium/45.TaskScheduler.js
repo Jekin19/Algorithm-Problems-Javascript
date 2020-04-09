@@ -134,6 +134,28 @@ function MaxHeap(comparator) {
   };
 }
 
+var leastInterval2 = function(tasks, n) {
+  if (!tasks || tasks.length === 0 || n < 0) {
+    return 0;
+  }
+
+  let map = new Map();
+  tasks.forEach(task => {
+    if (map.has(task)) {
+      map.set(task, map.get(task) + 1);
+    } else {
+      map.set(task, 1);
+    }
+  });
+
+  const sortedArray = Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+  const maxValue = sortedArray[0][1] - 1;
+  let idleSlots = maxValue * n;
+  for (let i = 1; i < sortedArray.length; i++) {
+    idleSlots -= Math.min(maxValue, sortedArray[i][1]);
+  }
+  return idleSlots > 0 ? tasks.length + idleSlots : tasks.length;
+};
 console.log("");
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");
@@ -145,4 +167,5 @@ console.log("input: " + input);
 const n = 2;
 console.log("n: " + n);
 console.log(leastInterval(input, n));
+console.log(leastInterval2(input, n));
 console.log("---------------------------------------");

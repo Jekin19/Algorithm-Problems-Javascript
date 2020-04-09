@@ -1,19 +1,19 @@
-let quick_sort_rec = function(a, l, h) {
+let quick_sort_rec = function (a, l, h) {
   if (h > l) {
-    let pivot_index = merge(a, l, h);
-    merge_sort_rec(a, l, pivot_index - 1);
-    merge_sort_rec(a, pivot_index + 1, h);
+    let pivot_index = pivot(a, l, h);
+    quick_sort_rec(a, l, pivot_index - 1);
+    quick_sort_rec(a, pivot_index + 1, h);
   }
 };
 
-let quick_sort = function(a) {
+let quick_sort = function (a) {
   if (!a) {
     throw "Invalid Input.";
   }
-  merge_sort_rec(a, 0, a.length - 1);
+  quick_sort_rec(a, 0, a.length - 1);
 };
 
-let pivot = function(a, start, end) {
+let pivot = function (a, start, end) {
   // pivot is the the first value;
   let pivotValue = a[start];
   let i = start;
@@ -46,6 +46,6 @@ console.log("Quick sort");
 console.log("---------------------------------------");
 console.log("before sort", array_for_quick_sort);
 
-merge_sort(array_for_quick_sort);
+quick_sort(array_for_quick_sort);
 
 console.log("After sort", array_for_quick_sort);
