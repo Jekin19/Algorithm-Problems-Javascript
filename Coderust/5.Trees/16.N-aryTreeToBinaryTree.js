@@ -1,4 +1,4 @@
-let convertNaryToBinary = function(root) {
+let convertNaryToBinary = function (root) {
   if (!root) {
     return root;
   }
@@ -10,7 +10,7 @@ let convertNaryToBinary = function(root) {
     const current = stack.shift();
     if (current.childrens) {
       let temp = current;
-      current.childrens.forEach(curr => {
+      current.childrens.forEach((curr) => {
         temp[rightOrLeft] = curr;
         temp = temp[rightOrLeft];
         stack.push(curr);
@@ -27,7 +27,7 @@ let convertNaryToBinary = function(root) {
   return root;
 };
 
-let convertBinaryToNary = function(root) {
+let convertBinaryToNary = function (root) {
   if (!root) {
     return root;
   }
@@ -50,6 +50,65 @@ let convertBinaryToNary = function(root) {
       current.childrens = childrens;
     }
     delete current[rightOrLeft];
+  }
+  return root;
+};
+
+let convertNaryToBinary_2 = function (root) {
+  if (!root) {
+    return root;
+  }
+
+  let stack = [root];
+  let direction = "left";
+  while (stack.length > 0) {
+    let length = stack.length;
+    while (length > 0) {
+      let node = stack.shift();
+      if (node.childrens) {
+        let temp = node;
+        node.childrens.forEach((child) => {
+          temp[direction] = child;
+          stack.push(child);
+          temp = temp[direction];
+        });
+      }
+      length--;
+      delete node.childrens;
+    }
+    direction = direction === "left" ? "right" : "left";
+  }
+
+  return root;
+};
+
+let convertBinaryToNary_2 = function (root) {
+  if (!root) {
+    return root;
+  }
+
+  let stack = [root];
+  let direction = "left";
+  while (stack.length > 0) {
+    let length = stack.length;
+    while (length > 0) {
+      const node = stack.shift();
+      let temp = node[direction];
+      delete node[direction];
+      const childrens = [];
+      while (temp) {
+        let next = temp[direction];
+        delete temp[direction];
+        childrens.push(temp);
+        stack.push(temp);
+        temp = next;
+      }
+      if (childrens.length > 0) {
+        node.childrens = childrens;
+      }
+      length--;
+    }
+    direction = direction === "left" ? "right" : "left";
   }
   return root;
 };

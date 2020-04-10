@@ -1,4 +1,30 @@
-let levenshtein_distance = function(str1, str2) {
+let levenshtein_distance = function (str1, str2) {
+  //TODO: Write - Your - Code
+  if (str2.length === 0) {
+    return str1.length;
+  }
+
+  if (str1.length === 0) {
+    return str2.length;
+  }
+
+  let previousDP = [0];
+  for (let i = 1; i <= str2.length; i++) {
+    previousDP.push(i);
+  }
+  for (let i = 0; i < str1.length; i++) {
+    let currentDP = [i];
+    for (let j = 0; j < str2.length; j++) {
+      currentDP.push(0);
+      let cost = str2[j] === str1[i] ? 0 : 1;
+      currentDP[j + 1] = Math.min(previousDP[j + 1] + 1, currentDP[j] + 1, previousDP[j] + cost);
+    }
+    previousDP = currentDP;
+  }
+  return previousDP[str2.length];
+};
+
+let levenshtein_distance_2 = function (str1, str2) {
   if (str2.length === 0) {
     return str1.length;
   }
@@ -32,7 +58,6 @@ let levenshtein_distance = function(str1, str2) {
   }
   return result[str1.length - 1][str2.length - 1];
 };
-
 console.log("");
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");
