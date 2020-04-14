@@ -10,7 +10,7 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function(l1, l2) {
+var addTwoNumbers = function (l1, l2) {
   let carryForward = 0;
   let resultNode;
   let previousNode;
@@ -34,10 +34,10 @@ var addTwoNumbers = function(l1, l2) {
       l2 = l2.next;
     }
   }
-  return reverList(resultNode);
+  return resultNode;
 };
 
-let create_linked_list = function(arr = []) {
+let create_linked_list = function (arr = []) {
   let result = { val: arr[0] };
   const returnResult = result;
   for (let i = 1; i < arr.length; i++) {
