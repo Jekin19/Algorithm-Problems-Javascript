@@ -3,32 +3,24 @@
 function MaxHeap(comparator) {
   this.comparator =
     comparator ||
-    function(a, b) {
+    function (a, b) {
       return a - b;
     };
   this.heap = [];
-  this.getLength = function() {
+
+  this.getLength = function () {
     return this.heap.length;
   };
 
-  this.getHeap = function() {
-    return this.heap;
-  };
-
-  this.getMax = function() {
-    return this.heap.length > 0 ? this.heap[0] : null;
-  };
   // Add the element to the bottom level of the heap at the most left.
   // Compare the added element with its parent; if they are in the correct order, stop.
   // If not, swap the element with its parent and return to the previous step.
-  this.insert = function(x) {
+  this.insert = function (x) {
     this.heap.push(x);
-
     let insertedIndex = this.heap.length - 1;
     while (insertedIndex > 0) {
       let parentIndex = Math.floor((insertedIndex - 1) / 2);
       if (this.comparator(this.heap[insertedIndex], this.heap[parentIndex]) > 0) {
-        // if (this.heap[insertedIndex] > this.heap[parentIndex]) {
         // swap
         [this.heap[parentIndex], this.heap[insertedIndex]] = [this.heap[insertedIndex], this.heap[parentIndex]];
         insertedIndex = parentIndex;
@@ -41,7 +33,7 @@ function MaxHeap(comparator) {
   // Replace the root of the heap with the last element on the last level.
   // Compare the new root with its children; if they are in the correct order, stop.
   // If not, swap the element with one of its children and return to the previous step. (Swap with its smaller child in a min-heap and its larger child in a max-heap.)
-  this.extractMax = function() {
+  this.extractMax = function () {
     if (this.getLength() > 1) {
       const max = this.heap[0];
       const lastElement = this.heap.pop();
@@ -55,7 +47,6 @@ function MaxHeap(comparator) {
         if (
           leftChildIndex < this.heap.length &&
           this.comparator(this.heap[currentIndex], this.heap[leftChildIndex]) < 0
-          // this.heap[currentIndex] < this.heap[leftChildIndex]
         ) {
           largestIndex = leftChildIndex;
         }
@@ -63,8 +54,6 @@ function MaxHeap(comparator) {
           rightChildIndex < this.heap.length &&
           this.comparator(this.heap[currentIndex], this.heap[rightChildIndex]) < 0 &&
           this.comparator(this.heap[largestIndex], this.heap[rightChildIndex]) < 0
-          // this.heap[currentIndex] < this.heap[rightChildIndex] &&
-          // this.heap[largestIndex] < this.heap[rightChildIndex]
         ) {
           largestIndex = rightChildIndex;
         }
@@ -82,7 +71,7 @@ function MaxHeap(comparator) {
   };
 }
 
-let heap = new MaxHeap();
+let heap = new MaxHeap((a, b) => b - a);
 heap.insert(10);
 heap.insert(5);
 heap.insert(8);

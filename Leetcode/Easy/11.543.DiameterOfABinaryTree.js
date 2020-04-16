@@ -14,27 +14,49 @@
  * @return {number}
  */
 
-var diameterOfBinaryTree = function(root) {
+// var diameterOfBinaryTree = function(root) {
+//   if (!root) {
+//     return 0;
+//   }
+
+//   let leftHeight = height(root.left);
+//   let rightHeight = height(root.right);
+
+//   let leftDiameter = diameterOfBinaryTree(root.left);
+//   let rightDiameter = diameterOfBinaryTree(root.right);
+
+//   return Math.max(leftHeight + rightHeight, Math.max(leftDiameter, rightDiameter));
+// };
+
+// function height(root) {
+//   if (!root) {
+//     return 0;
+//   }
+
+//   return 1 + Math.max(height(root.left), height(root.right));
+// }
+
+let max;
+var diameterOfBinaryTree = function (root) {
   if (!root) {
     return 0;
   }
-
-  let leftHeight = height(root.left);
-  let rightHeight = height(root.right);
-
-  let leftDiameter = diameterOfBinaryTree(root.left);
-  let rightDiameter = diameterOfBinaryTree(root.right);
-
-  return Math.max(leftHeight + rightHeight, Math.max(leftDiameter, rightDiameter));
+  max = 0;
+  diameterOfBinaryTree_rec(root);
+  return max;
 };
 
-function height(root) {
+var diameterOfBinaryTree_rec = function (root) {
   if (!root) {
     return 0;
   }
 
-  return 1 + Math.max(height(root.left), height(root.right));
-}
+  let leftDiameter = diameterOfBinaryTree_rec(root.left);
+  let rightDiameter = diameterOfBinaryTree_rec(root.right);
+
+  max = Math.max(1 + leftDiameter + rightDiameter, max);
+  return Math.max(1 + leftDiameter, 1 + rightDiameter);
+};
 
 console.log("");
 console.log("+++++++++++++++++++++++++++++++++++++++");
@@ -43,6 +65,6 @@ console.log("---------------------------------------");
 let root = {
   val: 8,
   left: { val: 3, right: { val: 6, left: { val: 4 }, right: { val: 7 } }, left: { val: 1 } },
-  right: { val: 10, right: { val: 14, left: { val: 13 } } }
+  right: { val: 10, right: { val: 14, left: { val: 13 } } },
 };
 console.log(diameterOfBinaryTree(root));
