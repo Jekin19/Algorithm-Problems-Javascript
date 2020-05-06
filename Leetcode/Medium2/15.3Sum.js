@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function(nums) {
+var threeSum = function (nums) {
   let result = [];
   if (!nums || nums.length === 0) {
     return result;
@@ -16,24 +16,17 @@ var threeSum = function(nums) {
     let start = i + 1;
     let end = nums.length - 1;
     while (start < end) {
-      if (i > 0 && nums[start] === nums[start - 1] && start - 1 !== i) {
+      let sum = nums[i] + nums[start] + nums[end];
+      if (sum < 0 || (start > i + 1 && nums[start] === nums[start - 1])) {
         start++;
         continue;
-      }
-
-      if (i < nums.length && nums[end] === nums[end + 1]) {
+      } else if (sum > 0 || (end < nums.length - 1 && nums[end] === nums[end + 1])) {
         end--;
         continue;
-      }
-
-      if (nums[i] + nums[start] + nums[end] === 0) {
+      } else {
         result.push([nums[i], nums[start], nums[end]]);
         start++;
         end--;
-      } else if (nums[i] + nums[start] + nums[end] > 0) {
-        end--;
-      } else {
-        start++;
       }
     }
   }
