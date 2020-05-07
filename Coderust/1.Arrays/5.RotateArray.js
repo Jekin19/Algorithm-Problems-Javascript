@@ -1,4 +1,4 @@
-let reverse = function(arr, start, end) {
+let reverse = function (arr, start, end) {
   while (start < end) {
     let temp = arr[start];
     arr[start] = arr[end];
@@ -9,7 +9,7 @@ let reverse = function(arr, start, end) {
   return arr;
 };
 
-let rotate_array = function(arr, n) {
+let rotate_array = function (arr, n) {
   if (!arr || !n) {
     throw " Invalid input";
   }
@@ -19,8 +19,8 @@ let rotate_array = function(arr, n) {
   n = (arrayLength - n) % arrayLength;
 
   reverse(arr, n, arrayLength - 1);
-  reverse(arr, 0, arrayLength - 1);
   reverse(arr, 0, n - 1);
+  reverse(arr, 0, arrayLength - 1);
   return arr;
 };
 
@@ -38,5 +38,5 @@ rotate_array(array_rotate_1, 2);
 console.log("After Rotate By 2", array_rotate_1);
 
 console.log("Before Rotate ", array_rotate_2);
-rotate_array(array_rotate_2, -1);
+rotate_array(array_rotate_2, 7);
 console.log("After Rotate By -1", array_rotate_2);

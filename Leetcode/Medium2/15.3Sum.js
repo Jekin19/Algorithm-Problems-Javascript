@@ -19,11 +19,10 @@ var threeSum = function (nums) {
       let sum = nums[i] + nums[start] + nums[end];
       if (sum < 0 || (start > i + 1 && nums[start] === nums[start - 1])) {
         start++;
-        continue;
       } else if (sum > 0 || (end < nums.length - 1 && nums[end] === nums[end + 1])) {
         end--;
-        continue;
       } else {
+        x;
         result.push([nums[i], nums[start], nums[end]]);
         start++;
         end--;

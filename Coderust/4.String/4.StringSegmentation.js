@@ -29,13 +29,15 @@ let can_segment_string_mem = function (s = "", dict = new Set(), map) {
     const firstElement = s.substring(0, i + 1);
     if (dict.has(firstElement)) {
       const secondElement = s.substring(i + 1, s.length);
-      if (dict.has(secondElement)) {
+      if (secondElement.length === 0 || dict.has(secondElement)) {
         return true;
       } else {
         if (!map.has(secondElement)) {
           map.set(secondElement, can_segment_string_mem(secondElement, dict, map));
         }
-        return map.get(secondElement);
+        if (map.get(secondElement)) {
+          return true;
+        }
       }
     }
   }
