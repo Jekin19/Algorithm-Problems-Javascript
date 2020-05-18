@@ -25,7 +25,7 @@
 //   return head;
 // };
 
-let delete_node = function(head, key) {
+let delete_node = function (head, key) {
   if (!head) {
     return head;
   }
@@ -35,11 +35,14 @@ let delete_node = function(head, key) {
   }
 
   let current = head;
-  while (current && current.next) {
-    if (current.next.data === key) {
-      current.next = current.next.next;
+  if (current) {
+    while (current.next) {
+      if (current.next.data === key) {
+        current.next = current.next.next;
+      } else {
+        current = current.next;
+      }
     }
-    current = current.next;
   }
   return head;
 };
@@ -50,7 +53,7 @@ console.log("+++++++++++++++++++++++++++++++++++++++");
 console.log("Delete Key from LinkList");
 console.log("---------------------------------------");
 
-let create_linked_list = function(arr = []) {
+let create_linked_list = function (arr = []) {
   let result = { data: arr[0] };
   const returnResult = result;
   for (let i = 1; i < arr.length; i++) {
@@ -60,7 +63,7 @@ let create_linked_list = function(arr = []) {
   result.next = null;
   return returnResult;
 };
-let head_before_delete = create_linked_list([0, 1, 2, 3, 4, 5, 10, 9]);
+let head_before_delete = create_linked_list([0, 1, 2, 3, 4, 5, 5, 10, 9]);
 
 let temp_head = head_before_delete;
 console.log("before delete key");

@@ -1,18 +1,14 @@
-let populate_sibling_pointers = function(root) {
+let populate_sibling_pointers = function (root) {
   if (!root) {
     return root;
   }
   let stack = [root, null];
-  let head;
   let previous = null;
   while (stack.length > 0) {
     const node = stack.shift();
 
     if (previous === null) {
       previous = node;
-      if (!head) {
-        head = previous;
-      }
     } else {
       previous.next = node;
       previous = node;
@@ -32,7 +28,7 @@ let populate_sibling_pointers = function(root) {
       }
     }
   }
-  return head;
+  return root;
 };
 
 console.log("");
@@ -43,7 +39,7 @@ console.log("---------------------------------------");
 let root = {
   value: 8,
   left: { value: 3, right: { value: 6, left: { value: 4 }, right: { value: 7 } }, left: { value: 1 } },
-  right: { value: 10, right: { value: 14, left: { value: 13 } } }
+  right: { value: 10, right: { value: 14, left: { value: 13 } } },
 };
 let firstNode = populate_sibling_pointers(root);
 let result = [];

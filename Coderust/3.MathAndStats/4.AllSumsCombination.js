@@ -1,7 +1,7 @@
 // All Sum Combinations
 // Given a positive integer, return all possible sum combinations for this number using positive integers.
 
-let print_all_sum = function(target) {
+let print_all_sum = function (target) {
   let result = [];
   if (target < 1) {
     return result;
@@ -26,7 +26,7 @@ let print_all_sum = function(target) {
 };
 
 // Recursive
-let print_all_sum_recursive = function(target) {
+let print_all_sum_recursive = function (target) {
   let result = [];
   if (target < 1) {
     return result;
@@ -35,8 +35,8 @@ let print_all_sum_recursive = function(target) {
   return result;
 };
 
-let print_all_sum_rec = function(start, currentResult, result, target) {
-  const sum = currentResult.reduce((accumulator, value) => accumulator + value, 0);
+let print_all_sum_rec = function (start, currentResult, result, target, sum = 0) {
+  // const sum = currentResult.reduce((accumulator, value) => accumulator + value, 0);
   if (sum <= target) {
     if (sum === target) {
       result.push(currentResult);
@@ -44,7 +44,7 @@ let print_all_sum_rec = function(start, currentResult, result, target) {
     }
     for (let i = start; i < target; i++) {
       const newResult = currentResult.concat([i]);
-      print_all_sum_rec(i, newResult, result, target);
+      print_all_sum_rec(i, newResult, result, target, sum + i);
     }
   }
 };

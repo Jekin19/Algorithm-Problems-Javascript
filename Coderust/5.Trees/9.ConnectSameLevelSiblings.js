@@ -1,4 +1,4 @@
-let populate_sibling_pointers = function(root) {
+let populate_sibling_pointers = function (root) {
   if (!root) {
     return root;
   }
@@ -48,7 +48,7 @@ console.log("---------------------------------------");
 let root = {
   value: 8,
   left: { value: 3, right: { value: 6, left: { value: 4 }, right: { value: 7 } }, left: { value: 1 } },
-  right: { value: 10, right: { value: 14, left: { value: 13 } } }
+  right: { value: 10, right: { value: 14, left: { value: 13 } } },
 };
 const result = populate_sibling_pointers(root);
 for (let res of result) {
